@@ -6,11 +6,31 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AC7223FC2EEAE2AF00528FF4 /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = AC7223FB2EEAE2AF00528FF4 /* SwiftfulLoadingIndicators */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AC7224762EEAF4FF00528FF4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AC8534FA2EEAD9B800E06440 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AC8535012EEAD9B800E06440;
+			remoteInfo = WorkoutCalendar;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		AC7224722EEAF4FF00528FF4 /* WorkoutCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkoutCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC8535022EEAD9B800E06440 /* WorkoutCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		AC7224732EEAF4FF00528FF4 /* WorkoutCalendarTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WorkoutCalendarTests;
+			sourceTree = "<group>";
+		};
 		AC8535042EEAD9B800E06440 /* WorkoutCalendar */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = WorkoutCalendar;
@@ -19,10 +39,18 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AC72246F2EEAF4FF00528FF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AC8534FF2EEAD9B800E06440 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC7223FC2EEAE2AF00528FF4 /* SwiftfulLoadingIndicators in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				AC8535042EEAD9B800E06440 /* WorkoutCalendar */,
+				AC7224732EEAF4FF00528FF4 /* WorkoutCalendarTests */,
 				AC8535032EEAD9B800E06440 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				AC8535022EEAD9B800E06440 /* WorkoutCalendar.app */,
+				AC7224722EEAF4FF00528FF4 /* WorkoutCalendarTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +78,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AC7224712EEAF4FF00528FF4 /* WorkoutCalendarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC7224782EEAF4FF00528FF4 /* Build configuration list for PBXNativeTarget "WorkoutCalendarTests" */;
+			buildPhases = (
+				AC72246E2EEAF4FF00528FF4 /* Sources */,
+				AC72246F2EEAF4FF00528FF4 /* Frameworks */,
+				AC7224702EEAF4FF00528FF4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AC7224772EEAF4FF00528FF4 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AC7224732EEAF4FF00528FF4 /* WorkoutCalendarTests */,
+			);
+			name = WorkoutCalendarTests;
+			packageProductDependencies = (
+			);
+			productName = WorkoutCalendarTests;
+			productReference = AC7224722EEAF4FF00528FF4 /* WorkoutCalendarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AC8535012EEAD9B800E06440 /* WorkoutCalendar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC85350D2EEAD9BA00E06440 /* Build configuration list for PBXNativeTarget "WorkoutCalendar" */;
@@ -65,6 +118,7 @@
 			);
 			name = WorkoutCalendar;
 			packageProductDependencies = (
+				AC7223FB2EEAE2AF00528FF4 /* SwiftfulLoadingIndicators */,
 			);
 			productName = WorkoutCalendar;
 			productReference = AC8535022EEAD9B800E06440 /* WorkoutCalendar.app */;
@@ -80,6 +134,10 @@
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
+					AC7224712EEAF4FF00528FF4 = {
+						CreatedOnToolsVersion = 26.1.1;
+						TestTargetID = AC8535012EEAD9B800E06440;
+					};
 					AC8535012EEAD9B800E06440 = {
 						CreatedOnToolsVersion = 26.1.1;
 					};
@@ -94,17 +152,28 @@
 			);
 			mainGroup = AC8534F92EEAD9B800E06440;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				AC7223FA2EEAE2AF00528FF4 /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = AC8535032EEAD9B800E06440 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				AC8535012EEAD9B800E06440 /* WorkoutCalendar */,
+				AC7224712EEAF4FF00528FF4 /* WorkoutCalendarTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AC7224702EEAF4FF00528FF4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AC8535002EEAD9B800E06440 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +184,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AC72246E2EEAF4FF00528FF4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AC8534FE2EEAD9B800E06440 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +200,57 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		AC7224772EEAF4FF00528FF4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AC8535012EEAD9B800E06440 /* WorkoutCalendar */;
+			targetProxy = AC7224762EEAF4FF00528FF4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		AC7224792EEAF4FF00528FF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7Z457JRAZT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teenagelove.WorkoutCalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkoutCalendar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WorkoutCalendar";
+			};
+			name = Debug;
+		};
+		AC72247A2EEAF4FF00528FF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7Z457JRAZT;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.teenagelove.WorkoutCalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkoutCalendar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WorkoutCalendar";
+			};
+			name = Release;
+		};
 		AC85350B2EEAD9BA00E06440 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -185,6 +311,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -242,6 +369,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -323,6 +451,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AC7224782EEAF4FF00528FF4 /* Build configuration list for PBXNativeTarget "WorkoutCalendarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC7224792EEAF4FF00528FF4 /* Debug */,
+				AC72247A2EEAF4FF00528FF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AC8534FD2EEAD9B800E06440 /* Build configuration list for PBXProject "WorkoutCalendar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -342,6 +479,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AC7223FA2EEAE2AF00528FF4 /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulLoadingIndicators";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AC7223FB2EEAE2AF00528FF4 /* SwiftfulLoadingIndicators */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC7223FA2EEAE2AF00528FF4 /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */;
+			productName = SwiftfulLoadingIndicators;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AC8534FA2EEAD9B800E06440 /* Project object */;
 }

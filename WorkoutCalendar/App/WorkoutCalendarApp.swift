@@ -11,7 +11,8 @@ import SwiftUI
 struct WorkoutCalendarApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CalendarScreenView()
+                .environment(Coordinator())
         }
     }
 }

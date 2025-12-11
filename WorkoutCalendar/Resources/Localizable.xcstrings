@@ -1,0 +1,39 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "%lld" : {
+
+    },
+    "BPM" : {
+
+    },
+    "calendar.title" : {
+      "extractionState" : "manual"
+    },
+    "empty.state.title" : {
+      "extractionState" : "manual"
+    },
+    "error.button.title" : {
+      "extractionState" : "manual"
+    },
+    "Heart Rate" : {
+
+    },
+    "No workouts for this day" : {
+
+    },
+    "Speed" : {
+
+    },
+    "Speed (km/h)" : {
+
+    },
+    "Time" : {
+
+    }
+  },
+  "version" : "1.1"
+}
