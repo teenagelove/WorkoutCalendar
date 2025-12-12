@@ -7,45 +7,56 @@
 
 import SwiftUI
 
-struct CalendarView: View {
-    let markedDates: Set<Date>
-    @Binding var selectedDate: Date?
-    @Binding var currentMonthStart: Date
+// MARK: - Calendar View
 
+struct CalendarView: View {
+    
+    // MARK: - Properties
+    
+    let markedDates: Set<Date>
+    @Binding var selectedDate: Date
+
+    let currentMonthStart: Date
+    let onMonthChange: (Int) -> Void
+
+    // MARK: - Body
+    
     var body: some View {
-        VStack(spacing: 8) {
+        VStack {
             header
-                .padding(.bottom, 8)
+                .padding()
             weekdayLabels
             daysGrid
         }
     }
 }
 
-// TODO: Too complicated extension
 private extension CalendarView {
+    
+    // MARK: - UI Components
+    
     var header: some View {
         HStack {
             Button {
-                shiftMonth(by: -1)
+                onMonthChange(-1)
             } label: {
-                Image(systemName: SFSymbols.chevronLeft)
-                    .font(.headline)
+                Image(systemName: Constants.SFSymbols.chevronLeft)
+                    .font(.appHeadline)
             }
             .buttonStyle(.plain)
 
             Spacer()
 
             Text(currentMonthStart.monthAndYear)
-                .font(.headline)
+                .font(.appHeadline)
 
             Spacer()
 
             Button {
-                shiftMonth(by: 1)
+                onMonthChange(1)
             } label: {
-                Image(systemName: SFSymbols.chevronRight)
-                    .font(.headline)
+                Image(systemName: Constants.SFSymbols.chevronRight)
+                    .font(.appHeadline)
             }
             .buttonStyle(.plain)
         }
@@ -55,7 +66,7 @@ private extension CalendarView {
         HStack(spacing: 0) {
             ForEach(currentMonthStart.weekdaySymbols, id: \.self) { symbol in
                 Text(symbol)
-                    .font(.caption)
+                    .font(.appCaption)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity)
             }
@@ -65,13 +76,14 @@ private extension CalendarView {
     var daysGrid: some View {
         let days = currentMonthStart.calendarGridDays
         let rows = days.count / 7
-        return VStack(spacing: 6) {
+
+        return VStack {
             ForEach(0..<rows, id: \.self) { row in
-                HStack(spacing: 0) {
+                HStack {
                     ForEach(0..<7, id: \.self) { col in
                         let index = row * 7 + col
                         dayCell(days[index])
-                            .frame(maxWidth: .infinity, minHeight: 36)
+                            .frame(minWidth: 44, minHeight: 44)
                     }
                 }
             }
@@ -81,13 +93,13 @@ private extension CalendarView {
     @ViewBuilder
     func dayCell(_ date: Date?) -> some View {
         if let date {
-            let isSelected = selectedDate?.isSameDay(as: date) ?? false
+            let isSelected = selectedDate.isSameDay(as: date)
             let isMarked = markedDates.contains(date.startOfDay)
 
             Button {
-                selectedDate = isSelected ? nil : date
+                selectedDate = isSelected ? Date() : date
             } label: {
-                VStack(spacing: 4) {
+                VStack {
                     ZStack {
                         if isSelected {
                             Circle()
@@ -102,7 +114,7 @@ private extension CalendarView {
                         }
 
                         Text("\(date.day)")
-                            .font(.body)
+                            .font(.bodyText)
                             .fontWeight(isSelected ? .semibold : .regular)
                             .foregroundStyle(.primary)
                     }
@@ -120,12 +132,6 @@ private extension CalendarView {
             Color.clear.frame(height: 44)
         }
     }
-
-    func shiftMonth(by offset: Int) {
-        if let newMonthStart = currentMonthStart.byAddingMonths(offset)?.startOfMonth {
-            currentMonthStart = newMonthStart
-        }
-    }
 }
 
 #Preview {
@@ -135,7 +141,9 @@ private extension CalendarView {
     return CalendarView(
         markedDates: marks,
         selectedDate: .constant(Date()),
-        currentMonthStart: .constant(Date().startOfMonth)
+
+        currentMonthStart: Date().startOfMonth,
+        onMonthChange: { _ in }
     )
 }
 

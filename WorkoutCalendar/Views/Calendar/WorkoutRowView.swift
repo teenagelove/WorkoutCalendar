@@ -7,27 +7,38 @@
 
 import SwiftUI
 
+// MARK: - Workout Row View
+
 struct WorkoutRowView: View {
+    
+    // MARK: - Properties
+    
     let workout: Workout
+    
+    // MARK: - Body
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading) {
                 Text(workout.workoutActivityType)
-                    .font(.headline)
+                    .font(.appHeadline)
                 
                 if let date = workout.startDate {
                     Text(date.formatted(date: .omitted, time: .shortened))
-                        .font(.subheadline)
+                        .font(.appSubheadline)
                         .foregroundStyle(.secondary)
                 }
             }
             
             Spacer()
             
-            Image(systemName: SFSymbols.chevronRight)
+            Image(systemName: Constants.SFSymbols.chevronRight)
                 .foregroundStyle(.tertiary)
         }
         .padding(.vertical, 8)
     }
+}
+
+#Preview {
+    WorkoutRowView(workout: .mock)
 }
