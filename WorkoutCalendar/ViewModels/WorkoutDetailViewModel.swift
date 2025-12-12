@@ -9,36 +9,54 @@ import Foundation
 import Observation
 
 @Observable
+@MainActor
 final class WorkoutDetailViewModel {
-    
+
+    // MARK: - State Enum
+
     enum State {
         case loading
-        case loaded(WorkoutMetadata, WorkoutDiagramContainer)
+        case loaded(WorkoutMetadata, WorkoutDiagram)
         case error(String)
     }
-    
-    var state: State = .loading
+
+    // MARK: - Properties
+
     let workout: Workout
-    
-    init(workout: Workout) {
-        self.workout = workout
+    private(set) var state: State = .loading
+    private let service: NetworkServiceProtocol
+
+    // MARK: - Init
+
+    convenience init() {
+        self.init(
+            workout: Workout.mock,
+            service: MockDataService()
+        )
     }
-    
-    @MainActor
+
+    init(workout: Workout, service: NetworkServiceProtocol) {
+        self.workout = workout
+        self.service = service
+    }
+
+    // MARK: - Public Methods
+
     func loadData() async {
         state = .loading
+
         do {
-            try await Task.sleep(nanoseconds: 300_000_000)
-            
-            let allMetadata = try await MockDataService.shared.fetchMetadata()
-            let allDiagrams = try await MockDataService.shared.fetchDiagramData()
-            
-            guard let metadata = allMetadata[workout.workoutKey],
-                  let diagramData = allDiagrams[workout.workoutKey] else {
+            let allMetadata = try await service.fetchMetadata()
+            let allDiagrams = try await service.fetchDiagramData()
+
+            guard
+                let metadata = allMetadata[workout.workoutKey],
+                let diagramData = allDiagrams[workout.workoutKey]
+            else {
                 state = .error("Data not found for this workout")
                 return
             }
-            
+
             state = .loaded(metadata, diagramData)
         } catch {
             state = .error(error.localizedDescription)
