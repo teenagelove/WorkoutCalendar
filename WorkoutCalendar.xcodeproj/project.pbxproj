@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AC7223FC2EEAE2AF00528FF4 /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = AC7223FB2EEAE2AF00528FF4 /* SwiftfulLoadingIndicators */; };
+		ACA006CF2EEBEDB3002D0936 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = ACA006CE2EEBEDB3002D0936 /* Lottie */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +26,16 @@
 		AC8535022EEAD9B800E06440 /* WorkoutCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		ACDEB8832EEC029C00291BA3 /* Exceptions for "WorkoutCalendar" folder in "WorkoutCalendar" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/Info.plist,
+			);
+			target = AC8535012EEAD9B800E06440 /* WorkoutCalendar */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		AC7224732EEAF4FF00528FF4 /* WorkoutCalendarTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -33,6 +44,9 @@
 		};
 		AC8535042EEAD9B800E06440 /* WorkoutCalendar */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				ACDEB8832EEC029C00291BA3 /* Exceptions for "WorkoutCalendar" folder in "WorkoutCalendar" target */,
+			);
 			path = WorkoutCalendar;
 			sourceTree = "<group>";
 		};
@@ -51,6 +65,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC7223FC2EEAE2AF00528FF4 /* SwiftfulLoadingIndicators in Frameworks */,
+				ACA006CF2EEBEDB3002D0936 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +134,7 @@
 			name = WorkoutCalendar;
 			packageProductDependencies = (
 				AC7223FB2EEAE2AF00528FF4 /* SwiftfulLoadingIndicators */,
+				ACA006CE2EEBEDB3002D0936 /* Lottie */,
 			);
 			productName = WorkoutCalendar;
 			productReference = AC8535022EEAD9B800E06440 /* WorkoutCalendar.app */;
@@ -154,6 +170,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				AC7223FA2EEAE2AF00528FF4 /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */,
+				ACA006CD2EEBEDB3002D0936 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = AC8535032EEAD9B800E06440 /* Products */;
@@ -394,9 +411,9 @@
 				DEVELOPMENT_TEAM = 7Z457JRAZT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WorkoutCalendar/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -431,9 +448,9 @@
 				DEVELOPMENT_TEAM = 7Z457JRAZT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WorkoutCalendar/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -499,6 +516,14 @@
 				minimumVersion = 0.0.4;
 			};
 		};
+		ACA006CD2EEBEDB3002D0936 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -506,6 +531,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AC7223FA2EEAE2AF00528FF4 /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */;
 			productName = SwiftfulLoadingIndicators;
+		};
+		ACA006CE2EEBEDB3002D0936 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACA006CD2EEBEDB3002D0936 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
