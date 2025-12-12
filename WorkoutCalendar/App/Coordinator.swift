@@ -8,13 +8,20 @@
 import SwiftUI
 import Observation
 
+// MARK: - Types
+    
 enum AppDestination: Hashable {
     case workoutDetail(Workout)
 }
 
 @Observable
 final class Coordinator {
+    
+    // MARK: - Properties
+    
     var path = NavigationPath()
+    
+    // MARK: - Public Methods
     
     func navigate(to destination: AppDestination) {
         path.append(destination)
