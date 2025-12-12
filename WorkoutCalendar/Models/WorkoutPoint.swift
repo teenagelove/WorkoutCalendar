@@ -1,16 +1,9 @@
 //
-//  DiagramData.swift
+//  WorkoutPoint.swift
 //  WorkoutCalendar
 //
 //  Created by Danil Kazakov on 2025/12/11.
 //
-
-import Foundation
-
-struct WorkoutDiagramContainer: Decodable {
-    let description: String?
-    let data: [WorkoutPoint]
-}
 
 struct WorkoutPoint: Decodable, Hashable {
     let time_numeric: Int

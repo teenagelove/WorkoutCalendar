@@ -6,5 +6,5 @@
 //
 
 struct DiagramDataResponse: Decodable {
-    let workouts: [String: WorkoutDiagramContainer]
+    let workouts: [String: WorkoutDiagram]
 }

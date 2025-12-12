@@ -13,9 +13,7 @@ struct Workout: Decodable, Identifiable, Hashable {
     let workoutStartDate: String
     
     var id: String { workoutKey }
-}
 
-extension Workout {
     var startDate: Date? {
         workoutStartDate.toDate
     }
