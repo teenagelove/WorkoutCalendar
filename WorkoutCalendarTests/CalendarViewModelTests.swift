@@ -9,20 +9,21 @@ import Testing
 import Foundation
 @testable import WorkoutCalendar
 
+@MainActor
 struct CalendarViewModelTests {
-    
-    @MainActor
-    private func makeViewModel() -> CalendarViewModel {
-        CalendarViewModel()
+
+    private let vm: CalendarViewModel
+
+    init() {
+        vm = CalendarViewModel()
     }
-    
+
     @Test
     func `viewModel should have idle state initially`() async {
         // Given
-        let viewModel = await makeViewModel()
         
         // Then
-        if case .idle = await viewModel.state {
+        if case .idle = vm.state {
             #expect(true)
         } else {
             #expect(Bool(false), "State should be idle")
@@ -32,15 +33,14 @@ struct CalendarViewModelTests {
     @Test
     func `viewModel should load workouts and transition to loaded state`() async {
         // Given
-        let viewModel = await makeViewModel()
         
         // When
-        await viewModel.loadWorkouts()
-        
+        await vm.loadWorkouts()
+
         // Then
-        if case .loaded(let workouts) = await viewModel.state {
+        if case .loaded(let workouts) = vm.state {
             #expect(!workouts.isEmpty)
-        } else if case .error = await viewModel.state {
+        } else if case .error = vm.state {
              // If files missing in test bundle, this branches.
         } else {
             #expect(Bool(false), "State should be loaded or error")
@@ -50,32 +50,33 @@ struct CalendarViewModelTests {
     @Test
     func `viewModel should filter workouts by selected date`() async {
         // Given
-        let viewModel = await makeViewModel()
-        await viewModel.loadWorkouts()
-        
-        guard case .loaded(let workouts) = await viewModel.state, let workout = workouts.first, let date = await workout.startDate else {
-            return
-        }
-        
+        await vm.loadWorkouts()
+
+        guard
+            case .loaded(let workouts) = vm.state,
+            let workout = workouts.first,
+            let date = workout.startDate
+        else { return }
+
         // When
-        await viewModel.selectDate(date)
-        
+        vm.selectDate(date)
+
         // Then
-        let filtered = await viewModel.workoutsForSelectedDate
+        let filtered = vm.workoutsForSelectedDate
         #expect(filtered.contains { $0.id == workout.id })
     }
     
     @Test
     func `viewModel should change month correctly`() async {
         // Given
-        let viewModel = await makeViewModel()
-        let initialMonth = await viewModel.currentMonth
-        
+        let initialMonth = vm.currentMonth
+
         // When
-        await viewModel.changeMonth(1)
-        
+        vm.changeMonth(1)
+
         // Then
         let expected = Calendar.current.date(byAdding: .month, value: 1, to: initialMonth)!
-        #expect(Calendar.current.isDate(viewModel.currentMonth, equalTo: expected, toGranularity: .month))
+        let current = vm.currentMonth
+        #expect(Calendar.current.isDate(current, equalTo: expected, toGranularity: .month))
     }
 }
