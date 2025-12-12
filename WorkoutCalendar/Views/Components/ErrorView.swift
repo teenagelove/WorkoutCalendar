@@ -7,46 +7,57 @@
 
 import SwiftUI
 
+// MARK: - Error View
+
 struct ErrorView: View {
+
+    // MARK: - Properties
+
     let message: String
     let action: () -> Void
 
+    // MARK: - Body
+
     var body: some View {
         VStack(spacing: 12) {
-            image
+            ErrorLottieView()
             errorMessage
             actionButton
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
 private extension ErrorView {
-    var image: some View {
-        Image(systemName: SFSymbols.triangle)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 40, height: 40)
-            .foregroundColor(.orange)
-    }
+
+    // MARK: - UI Components
 
     var errorMessage: some View {
         Text(message)
-            .font(.body)
+            .font(.bodyText)
             .multilineTextAlignment(.center)
             .foregroundColor(.secondary)
             .padding(.horizontal, 16)
     }
 
     var actionButton: some View {
-        Button(role: .none, action: action) {
-            Label(.errorButtonTitle, systemImage: SFSymbols.clockwise)
-                .font(.headline)
-                .padding(.horizontal, 20)
-                .padding(.vertical, 10)
+        Button(action: action) {
+            Label(
+                .errorButtonTitle,
+                systemImage: Constants.SFSymbols.clockwise
+            )
+            .font(.appHeadline)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.blue.opacity(0.1))
+            )
         }
+        .buttonStyle(.plain)
     }
 }
 
 #Preview {
-    ErrorView(message: "Error Error Error") { }
+    ErrorView(message: "ERROR") { }
 }

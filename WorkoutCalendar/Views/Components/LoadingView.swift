@@ -8,7 +8,12 @@
 import SwiftfulLoadingIndicators
 import SwiftUI
 
+// MARK: - Loading View
+
 struct LoadingView: View {
+
+    // MARK: - Body
+
     var body: some View {
         LoadingIndicator(animation: .fiveLinesPulse, color: .accent)
     }
