@@ -7,14 +7,30 @@
 
 import SwiftUI
 
+// MARK: - Workout Detail View
+
 struct WorkoutDetailView: View {
+    
+    // MARK: - State
+    
     @State private var viewModel: WorkoutDetailViewModel
+    
+    // MARK: - Dependencies
+    
     @Environment(Coordinator.self) private var coordinator
-    
-    init(workout: Workout) {
-        _viewModel = State(initialValue: WorkoutDetailViewModel(workout: workout))
+
+    // MARK: - Init
+
+    init() {
+        self.init(workout: Workout.mock, service: MockDataService())
     }
-    
+
+    init(workout: Workout, service: NetworkServiceProtocol) {
+        _viewModel = State(initialValue: WorkoutDetailViewModel(workout: workout, service: service))
+    }
+
+    // MARK: - Body
+
     var body: some View {
         Group {
             switch viewModel.state {
@@ -28,54 +44,47 @@ struct WorkoutDetailView: View {
                 }
             }
         }
-        .task {
-            await viewModel.loadData()
-        }
         .navigationTitle(viewModel.workout.workoutActivityType)
+        .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    coordinator.pop()
-                } label: {
-                    Image(systemName: SFSymbols.chevronLeft)
-                }
+                BackButton { coordinator.pop() }
             }
         }
-        .navigationBarBackButtonHidden(true)
+        .task { await viewModel.loadData() }
     }
 }
 
 private extension WorkoutDetailView {
-    func content(metadata: WorkoutMetadata, diagramData: WorkoutDiagramContainer) -> some View {
+    
+    // MARK: - UI Components
+    
+    func content(metadata: WorkoutMetadata, diagramData: WorkoutDiagram) -> some View {
         ScrollView {
             VStack(spacing: 24) {
                 headerInfo(metadata: metadata)
-                
+
                 statsGrid(metadata: metadata)
-                
+
                 WorkoutChartsView(data: diagramData.data)
                     .padding(.horizontal)
             }
             .padding(.bottom)
         }
     }
-    
+
     func headerInfo(metadata: WorkoutMetadata?) -> some View {
-        VStack(spacing: 16) {
-            Text(viewModel.workout.workoutActivityType)
-                .font(.largeTitle.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
+        VStack {
             if let date = viewModel.workout.startDate {
                 Text(date.formatted(date: .long, time: .shortened))
-                    .font(.title3)
+                    .font(.appTitle3)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
-            
+
             if let comment = metadata?.comment {
                 Text(comment)
-                    .font(.body)
+                    .font(.bodyText)
                     .padding(.top, 4)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -84,36 +93,65 @@ private extension WorkoutDetailView {
     }
 
     func statsGrid(metadata: WorkoutMetadata) -> some View {
-        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+        let columns = [
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ]
+
+        return LazyVGrid(columns: columns) {
             if let dist = metadata.distance {
-                statBox(title: "Distance", value: "\(dist) m", icon: "figure.run")
+                statBox(
+                    title: String(localized: .distanceTitle),
+                    value: "\(dist) m",
+                    icon: Constants.SFSymbols.figureRun
+                )
             }
+
             if let dur = metadata.duration {
-                statBox(title: "Duration", value: "\(dur) sec", icon: "clock")
+                statBox(
+                    title: String(localized: .durationTitle),
+                    value: "\(dur) sec",
+                    icon: Constants.SFSymbols.clock
+                )
             }
+
             if let temp = metadata.avg_temp {
-                statBox(title: "Temp", value: "\(temp) °C", icon: "thermometer")
+                statBox(
+                    title: String(localized: .tempTitle),
+                    value: "\(temp) °C",
+                    icon: Constants.SFSymbols.thermometer
+                )
             }
+
             if let humidity = metadata.avg_humidity {
-                statBox(title: "Humidity", value: "\(humidity) %", icon: "humidity")
+                statBox(
+                    title: String(localized: .humidityTitle),
+                    value: "\(humidity) %",
+                    icon: Constants.SFSymbols.humidity
+                )
             }
         }
         .padding(.horizontal)
     }
 
-    
     func statBox(title: String, value: String, icon: String) -> some View {
         VStack(spacing: 8) {
             Label(title, systemImage: icon)
-                .font(.caption)
+                .font(.appCaption)
                 .foregroundStyle(.secondary)
-            
+
             Text(value)
-                .font(.headline)
+                .font(.appHeadline)
         }
         .frame(maxWidth: .infinity)
         .padding()
         .background(Color(.secondarySystemBackground))
-        .cornerRadius(10)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+}
+
+#Preview {
+    NavigationStack {
+        WorkoutDetailView()
     }
 }

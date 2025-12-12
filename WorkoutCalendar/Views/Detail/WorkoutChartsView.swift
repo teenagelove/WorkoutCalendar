@@ -8,21 +8,28 @@
 import SwiftUI
 import Charts
 
+// MARK: - Workout Charts View
+
 struct WorkoutChartsView: View {
+    
+    // MARK: - Properties
+    
     let data: [WorkoutPoint]
+    
+    // MARK: - Body
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             
             // Heart Rate
             VStack(alignment: .leading, spacing: 8) {
-                Text("Heart Rate")
-                    .font(.headline)
+                Text(.heartrateTitle)
+                    .font(.appHeadline)
                 
                 Chart(data, id: \.time_numeric) { point in
                     LineMark(
-                        x: .value("Time", point.time_numeric),
-                        y: .value("BPM", point.heartRate)
+                        x: .value(.timeTitle, point.time_numeric),
+                        y: .value(.bpmTitle, point.heartRate)
                     )
                     .foregroundStyle(.red)
                     .interpolationMethod(.catmullRom)
@@ -32,24 +39,24 @@ struct WorkoutChartsView: View {
             }
             .padding()
             .background(Color(.secondarySystemBackground))
-            .cornerRadius(12)
-            
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+
             // Speed
             VStack(alignment: .leading, spacing: 8) {
-                Text("Speed (km/h)")
-                    .font(.headline)
+                Text(.speedKmTitle)
+                    .font(.appHeadline)
                 
                 Chart(data, id: \.time_numeric) { point in
                     LineMark(
-                        x: .value("Time", point.time_numeric),
-                        y: .value("Speed", point.speed_kmh)
+                        x: .value(.timeTitle, point.time_numeric),
+                        y: .value(.speedTitle, point.speed_kmh)
                     )
                     .foregroundStyle(.blue)
                     .interpolationMethod(.catmullRom)
                     
                     AreaMark(
-                        x: .value("Time", point.time_numeric),
-                        y: .value("Speed", point.speed_kmh)
+                        x: .value(.timeTitle, point.time_numeric),
+                        y: .value(.speedTitle, point.speed_kmh)
                     )
                     .foregroundStyle(.blue.opacity(0.1))
                     .interpolationMethod(.catmullRom)
@@ -58,7 +65,11 @@ struct WorkoutChartsView: View {
             }
             .padding()
             .background(Color(.secondarySystemBackground))
-            .cornerRadius(12)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
         }
     }
+}
+
+#Preview {
+    WorkoutChartsView(data: WorkoutDiagram.mock.data)
 }
