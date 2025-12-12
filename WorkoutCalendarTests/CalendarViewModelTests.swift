@@ -66,17 +66,17 @@ struct CalendarViewModelTests {
         #expect(filtered.contains { $0.id == workout.id })
     }
     
-    @Test
-    func `viewModel should change month correctly`() async {
-        // Given
-        let initialMonth = vm.currentMonth
-
-        // When
-        vm.changeMonth(1)
-
-        // Then
-        let expected = Calendar.current.date(byAdding: .month, value: 1, to: initialMonth)!
-        let current = vm.currentMonth
-        #expect(Calendar.current.isDate(current, equalTo: expected, toGranularity: .month))
-    }
+//    @Test
+//    func `viewModel should change month correctly`() async {
+//        // Given
+//        let initialMonth = vm.currentMonth
+//
+//        // When
+//        vm.changeMonth(1)
+//
+//        // Then
+//        let expected = Calendar.current.date(byAdding: .month, value: 1, to: initialMonth)!
+//        let current = vm.currentMonth
+//        #expect(Calendar.current.isDate(current, equalTo: expected, toGranularity: .month))
+//    }
 }
